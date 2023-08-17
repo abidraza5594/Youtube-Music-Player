@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import MusicPlayer from './Components/MusicPlayer/MusicPlayer';
+import './App.css';
 
 function App() {
   const [playlist, setPlaylist] = useState([
-    { title: '[FREE] Mc Stan Type Beat -"YAADEIN"| Sad Type Beat | Trap Beat |2022|', videoId: 'YrbvYmK23s4' },
-    { title: '(FREE) Juice WRLD Type Beat - "Imperfect"', videoId: 'NPw98mU-flk' }, 
+    { title: 'Juice WRLD Type Beat "FORGET ME" | Sad Guitar Rap Beat | Emotional Guitar instrumental 2023', videoId: 'TH4Y880u3U4' },
     { title: '[FREE] Juice WRLD Type Guitar Hip Hop Beat 2018 - "Ice" | Free Beat | Trap/Rap Instrumental 2019', videoId: 'aqZbswJFC-E' }, 
-    { title: '[FREE] Mc Stan Type Beat', videoId: '--lHWAXuh2Y' }, 
-    
+    { title: '(FREE) Juice WRLD Type Beat - "Imperfect"', videoId: 'NPw98mU-flk' }, 
+    { title: '[FREE] Mc Stan Type Beat -"YAADEIN"| Sad Type Beat | Trap Beat |2022|', videoId: 'YrbvYmK23s4' },
+    { title: '[FREE] Mc Stan Type Beat', videoId: '--lHWAXuh2Y' },
     // Add more songs here...
   ]);
 
@@ -37,12 +38,16 @@ function App() {
     }
   };
 
+  const removeMusicHandler = (indexToRemove) => {
+    setPlaylist(prevPlaylist => prevPlaylist.filter((_, index) => index !== indexToRemove));
+  };
+
   return (
     <div className="app">
       <h1>My Music Player App</h1>
       <button onClick={() => setIsPopupOpen(true)}>Add Music</button>
       {isPopupOpen && (
-        <div className="popup">
+        <div className={`popup ${isPopupOpen ? 'visible' : ''}`}>
           <h2>Add Music</h2>
           <input
             type="text"
@@ -61,7 +66,11 @@ function App() {
           <button onClick={addMusicHandler}>Add</button>
         </div>
       )}
-      <MusicPlayer playlist={playlist} />
+      {playlist.length === 0 ? (
+        <p>No songs available. Please add YouTube links or titles to listen.</p>
+      ) : (
+        <MusicPlayer playlist={playlist} removeMusic={removeMusicHandler} />
+      )}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 // MusicPlayer.js
 import React, { useState, useRef, useEffect } from 'react';
 import YouTube from 'react-youtube';
+// import CusTomButtons from '../Buttons/CusTomButtons';
 
 import './MusicPlayer.css';
 
@@ -75,21 +76,32 @@ function MusicPlayer({ playlist, removeMusic }) {
 
   return (
     <div className="music-player">
+
       <div className="thumbnail">
         <img src={getThumbnailUrl(playlist[currentTrackIndex].videoId)} alt="Video Thumbnail" />
+        <h2>{playlist[currentTrackIndex].title}</h2>
       </div>
-      <h2>{playlist[currentTrackIndex].title}</h2>
-      <div className="player-controls">
-        <button onClick={prevTrackHandler}>Previous</button>
-        <button onClick={playPauseHandler}>{isPlaying ? 'Pause' : 'Play'}</button>
-        <button onClick={nextTrackHandler}>Next</button>
+    
+
+      <div className="btnContainer">
+          <div className="player-controls">
+            <button onClick={prevTrackHandler}>Previous</button>
+            <button onClick={playPauseHandler}>{isPlaying ? 'Pause' : 'Play'}</button>
+            <button onClick={nextTrackHandler}>Next</button>
+          </div>
+          <button className="remove-button" onClick={() => removeMusic(currentTrackIndex)}>Remove Music</button>
       </div>
-      <button className="remove-button" onClick={() => removeMusic(currentTrackIndex)}>Remove Music</button>
-      {error ? (
-        <p>{error}</p>
-      ) : (
-        <YouTube videoId={playlist[currentTrackIndex].videoId} opts={videoOpts} onReady={onPlayerReady} onStateChange={onPlayerStateChange} onError={onPlayerError} />
-      )}
+
+      <div className="videoContainer">
+        {error ? (
+          <p>{error}</p>
+        ) :
+          <div className='video'>
+            <YouTube videoId={playlist[currentTrackIndex].videoId} opts={videoOpts} onReady={onPlayerReady} onStateChange={onPlayerStateChange} onError={onPlayerError} />
+          </div>
+        }
+      </div>
+
     </div>
   );
 }
