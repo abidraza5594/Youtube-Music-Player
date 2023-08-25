@@ -1,11 +1,11 @@
-// MusicPlayer.js
+
 import React, { useState, useRef, useEffect } from 'react';
 import YouTube from 'react-youtube';
 // import CusTomButtons from '../Buttons/CusTomButtons';
 
 import './MusicPlayer.css';
 
-function MusicPlayer({ playlist, removeMusic }) {
+function MusicPlayer({ playlist, removeMusic,isopenpopup }) {
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [error, setError] = useState(null);
@@ -79,7 +79,7 @@ function MusicPlayer({ playlist, removeMusic }) {
 
       <div className="thumbnail">
         <img src={getThumbnailUrl(playlist[currentTrackIndex].videoId)} alt="Video Thumbnail" />
-        <h2>{playlist[currentTrackIndex].title}</h2>
+        <h2 className='title'>{playlist[currentTrackIndex].title}</h2>
       </div>
     
 
@@ -88,6 +88,7 @@ function MusicPlayer({ playlist, removeMusic }) {
             <button onClick={prevTrackHandler}>Previous</button>
             <button onClick={playPauseHandler}>{isPlaying ? 'Pause' : 'Play'}</button>
             <button onClick={nextTrackHandler}>Next</button>
+            <button className='addmusic' onClick={() => isopenpopup(true)} ><span>Add Music</span><i></i></button>
           </div>
           <button className="remove-button" onClick={() => removeMusic(currentTrackIndex)}>Remove Music</button>
       </div>

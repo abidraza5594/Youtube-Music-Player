@@ -22,7 +22,7 @@ function App() {
       // Extract video ID from the YouTube URL
       const urlParts = newUrl.split('=');
       if (urlParts.length !== 2) {
-        throw new Error('Invalid YouTube URL');
+        throw new Error('Invalid YouTube URL'); 
       }
       const videoId = urlParts[1];
 
@@ -44,11 +44,10 @@ function App() {
 
   return (
     <div className="app">
-      <h1>My Music Player App</h1>
-      <button onClick={() => setIsPopupOpen(true)}>Add Music</button>
+      <h1 className='heading'>Youtube Music Player App</h1>
       {isPopupOpen && (
         <div className={`popup ${isPopupOpen ? 'visible' : ''}`}>
-          <h2>Add Music</h2>
+          <h2>Add Youtube URL..!</h2>
           <input
             type="text"
             placeholder="Title"
@@ -69,7 +68,7 @@ function App() {
       {playlist.length === 0 ? (
         <p>No songs available. Please add YouTube links or titles to listen.</p>
       ) : (
-        <MusicPlayer playlist={playlist} removeMusic={removeMusicHandler} />
+        <MusicPlayer isopenpopup={setIsPopupOpen} playlist={playlist} removeMusic={removeMusicHandler} />
       )}
     </div>
   );

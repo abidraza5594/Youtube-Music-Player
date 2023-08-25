@@ -1,8 +1,10 @@
-.music-player{
+/* Common styles for all screens */
+.music-player {
   width: 100%;
   height: 100vh;
   position: relative;
 }
+
 .thumbnail {
   position: absolute;
   top: 0;
@@ -11,29 +13,34 @@
   height: 100%;
   z-index: -1;
 }
-.thumbnail img{
+
+.thumbnail img {
   width: 100%;
   height: 100vh;
   object-fit: cover;
 }
-.thumbnail h2{
+
+.thumbnail h2 {
   position: absolute;
-  top: 20px;
+  top: 118px;
   left: 20px;
   color: white;
+  width: 50%;
+  height: auto;
 }
 
-.videoContainer{
+.videoContainer {
   top: 20%;
   right: 0;
   position: absolute;
-
 }
-.video{
+
+.video {
   width: 100%;
   height: 100%;
 }
-.btnContainer{
+
+.btnContainer {
   position: absolute;
   bottom: 0;
   right: 10%;
@@ -46,7 +53,7 @@
   height: 5rem;
 }
 
-.player-controls{
+.player-controls {
   padding: 10px;
   width: 100%;
   height: 100%;
@@ -54,7 +61,8 @@
   margin-top: -20px;
   justify-content: space-between;
 }
-.player-controls button{
+
+.player-controls button {
   height: 30px;
   width: auto;
   padding: 5px;
@@ -65,15 +73,72 @@
   cursor: pointer;
 }
 
-.remove-button{
+.remove-button {
   height: 30px;
+  position: absolute;
   cursor: pointer;
-  width: auto;
+  width: 130px;
   border: none;
   outline: none;
   padding: 5px;
   font-size: large;
+  top: -465px;
+  left: 350px;
   border-radius: 5px;
 }
 
+/* Media query for mobile devices */
+@media screen and (max-width: 768px) {
+  .music-player{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .thumbnail{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .title{
+    width: 100%;
+  }
+  .player-controls{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+    gap: 5px;
+    margin-left: 80px;
+  }
+  .btnContainer {
+    top: auto;
+    bottom: 0;
+    width: 100%;
+    justify-content: space-around;
+    padding: 10px;
+    flex-direction: row;
+    /* flex-wrap: wrap; */
+  }
 
+  .remove-button {
+    top: 0;
+    left: auto;
+    position: static;
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+  .videoContainer{
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .video{
+    width: 100%;
+    height: 100%;
+  }
+}
